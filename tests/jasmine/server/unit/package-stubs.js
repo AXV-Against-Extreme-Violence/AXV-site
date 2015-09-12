@@ -7163,7 +7163,7 @@ var packageMetadata = {
                 },
                 "version": {
                   "type": "constant",
-                  "value": "1290527d75224f64006142412bd8695f716cd18e"
+                  "value": "ab4901dba7f214f9a5dee0842d63609b77994185"
                 },
                 "PUBLIC_SETTINGS": {
                   "type": "undefined"
@@ -7287,7 +7287,7 @@ var packageMetadata = {
             },
             "connections": {
               "type": "constant",
-              "value": 1
+              "value": 0
             },
             "timeout": {
               "type": "constant",
@@ -7574,6 +7574,25 @@ var packageMetadata = {
         },
         "createAppLogger": {
           "type": "function"
+        }
+      }
+    },
+    "ObjectLogger": {
+      "type": "function",
+      "members": {
+        "prototype": {
+          "type": "object",
+          "members": {
+            "enter": {
+              "type": "function"
+            },
+            "return": {
+              "type": "function"
+            },
+            "bindMethod": {
+              "type": "function"
+            }
+          }
         }
       }
     }
@@ -7869,9 +7888,6 @@ var packageMetadata = {
     "chokidar": {
       "type": "object",
       "members": {
-        "isBinaryPath": {
-          "type": "function"
-        },
         "FSWatcher": {
           "type": "function",
           "members": {
@@ -7879,6 +7895,9 @@ var packageMetadata = {
               "type": "object",
               "members": {
                 "add": {
+                  "type": "function"
+                },
+                "unwatch": {
                   "type": "function"
                 },
                 "close": {
@@ -8199,6 +8218,16 @@ var packageMetadata = {
       }
     }
   },
+  "velocity:source-map-support": {
+    "SourceMapSupport": {
+      "type": "object",
+      "members": {
+        "install": {
+          "type": "function"
+        }
+      }
+    }
+  },
   "sanjo:long-running-child-process": {
     "LongRunningChildProcess": {
       "type": "function",
@@ -8345,6 +8374,9 @@ var packageMetadata = {
     "Velocity": {
       "type": "object",
       "members": {
+        "reusableMirrors": {
+          "type": "array"
+        },
         "startup": {
           "type": "function"
         },
@@ -8372,6 +8404,9 @@ var packageMetadata = {
         "registerTestingFramework": {
           "type": "function"
         },
+        "unregisterTestingFramework": {
+          "type": "function"
+        },
         "onTest": {
           "type": "function"
         },
@@ -8390,11 +8425,11 @@ var packageMetadata = {
         },
         "mirrorMeteorVersion": {
           "type": "constant",
-          "value": "1.1.0.2_1"
+          "value": "1.1.0.3_2"
         },
         "mirrorMeteorRelease": {
           "type": "constant",
-          "value": "velocity:METEOR@1.1.0.2_1"
+          "value": "velocity:METEOR@1.1.0.3_2"
         },
         "mirrorMeteorToolReleaseName": {
           "type": "constant",
@@ -8402,11 +8437,11 @@ var packageMetadata = {
         },
         "mirrorMeteorToolVersion": {
           "type": "constant",
-          "value": "1.1.3_2"
+          "value": "1.1.4_2"
         },
         "mirrorMeteorToolRelease": {
           "type": "constant",
-          "value": "velocity:meteor-tool@1.1.3_2"
+          "value": "velocity:meteor-tool@1.1.4_2"
         }
       }
     },
@@ -8679,6 +8714,9 @@ var packageMetadata = {
         },
         "setConfig": {
           "type": "function"
+        },
+        "getConfigPath": {
+          "type": "function"
         }
       }
     },
@@ -8701,11 +8739,11 @@ var packageMetadata = {
                 },
                 "pid": {
                   "type": "constant",
-                  "value": 8530
+                  "value": 8776
                 },
                 "fout": {
                   "type": "constant",
-                  "value": 33
+                  "value": 30
                 },
                 "child": {
                   "type": "object",
@@ -8724,7 +8762,7 @@ var packageMetadata = {
                     },
                     "pid": {
                       "type": "constant",
-                      "value": 8530
+                      "value": 8776
                     },
                     "stdin": {
                       "type": "null",
@@ -8841,10 +8879,14 @@ var packageMetadata = {
       "members": {
         "onTest": {
           "type": "function"
+        },
+        "setKarmaConfig": {
+          "type": "function"
         }
       }
     }
   },
+  "grigio:babel": {},
   "velocity:html-reporter": {},
   "reload": {},
   "autoupdate": {
@@ -8853,11 +8895,11 @@ var packageMetadata = {
       "members": {
         "autoupdateVersion": {
           "type": "constant",
-          "value": "89cbcf39c5eaa1886aebfdc9133cb4b99a45de7b"
+          "value": "84a034c1698e9e5355441c060db8fb248cfcfbc8"
         },
         "autoupdateVersionRefreshable": {
           "type": "constant",
-          "value": "15b71897a096d94474978b8c918fee75cb5c6d01"
+          "value": "d512e22143069bcfbc5180c1699e80d4a3414319"
         },
         "autoupdateVersionCordova": {
           "type": "constant",
