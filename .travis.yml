@@ -1,6 +1,10 @@
 sudo: required
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_install:
-  - "curl -L https://raw.githubusercontent.com/AXV-Against-Extreme-Violence/meteor-velocity-travis-ci/master/configure.sh | /bin/sh"
+- curl -L https://raw.githubusercontent.com/AXV-Against-Extreme-Violence/meteor-velocity-travis-ci/master/configure.sh
+  | /bin/sh
+notifications:
+  slack:
+    secure: bYF194wJIKJ4jcKIcAnyxN7uMxpoxQi8r1V7y9e3qhdzksny5GEHyyLatyeOPpBLlka6WHRacdS7U4rzWwfJZOlNZ85/OgAXmvzP2eqj6YEuNx+7UDxEd7cnhCaAOTNYKKcSXyHvHsyClgF0co1Kc9V2bc7PohvMPxqi6Xjr/gnygd+pN7Xn57kA87P+wpNNip1qJbQUr/ZA00GyMIxKtrbWMR+sPVJkceaxcYEGERcO7PoAL0kvsdX0Uv8c6ba3sHt3BYTFTVOdwn615wl+BoAnQ1Htg0q1Bny/EwxgUZYJ+1T/XgsWiRYdBYLz1L/7dIifHDAa2w0VvXMpvhP3LmgKpStsUB/NGRcNO31GnC+zxygh6wiJlGjW4wWP7Ll8JvmLWqjZokkUxSAgCxg10WEpJKeqJC1uNukggXPy2y3/O3Hg5T53kVuDiuphwkDhFWgsxbmQcvxL2cbECaaqxNmFHF/v1Fzrhutx5FU1l2dfpITMbdWifYeR0mtMlMsA6CDpB8KiGnxmtXe3yg3TAEc10nvucOqlEAleL629B+VcVM/3ukkae0zLoONRl03+jkA/MrUQCcV6zHQAE3zYNdih7YK0pyeRpFluV+iAhPDnuRha9fVRlCwaHGXFS3skyrF6RBL21BEDScEoiynyW2Q/P8QfmfSIF7w1NOfwnMI=
