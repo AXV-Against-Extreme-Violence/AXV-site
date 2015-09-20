@@ -23,6 +23,16 @@ describe('Collection: Reports', function () {
       expect(Report.title).toEqual(jasmine.anything());
     });
 
+    it('has an upload date field', function (){
+      // A Report's definition for the date field exists
+      expect(Report.date).toEqual(jasmine.anything());
+    });
+
+    it('has an event date field', function (){
+      // A Report's definition for the date field exists
+      expect(Report.eventDate).toEqual(jasmine.anything());
+    });
+
     it('has a explanation field', function (){
       // A Report's definition for the description field exists
       expect(Report.explanation).toEqual(jasmine.anything());
