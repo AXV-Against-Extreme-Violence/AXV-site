@@ -12,7 +12,7 @@ describe('Collection: Reports', function () {
       expect(Report).toEqual(jasmine.anything());
     });
 
-    it('has a kindID  field' function (){
+    it('has a kind  field' function (){
       // A report's definition for the kind field (referring to it's id) exists
       expect(Report.kind).toEqual(jasmine.anything());
     });
@@ -69,9 +69,9 @@ describe('Collection: Reports', function () {
       });
     });
 
-    it('has an agressor array field', function (){
-      // An agressors array exists (dictionary: {agressorID, explanation})
-      expect(Report.agressors).toEqual(jasmine.anything());
+    it('has an aggressor array field', function (){
+      // An aggressors array exists (dictionary: {aggressorID, explanation})
+      expect(Report.aggressors).toEqual(jasmine.anything());
     });
 
   });

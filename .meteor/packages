@@ -9,3 +9,10 @@ insecure
 mrt:moment@2.8.1
 sanjo:jasmine
 velocity:html-reporter
+jagi:astronomy
+accounts-password
+twbs:bootstrap
+underscore
+ian:accounts-ui-bootstrap-3
+iron:router
+jagi:astronomy-validators
