@@ -26,7 +26,7 @@ describe('ReportsService', function () {
       var result = {_id: reportId};
       spyOn(Reports, 'findOne').and.returnValue(result);
 
-      expect(ReportsService.getPlayer(playerId)).toBe(result);
+      expect(ReportsService.getReport(reportId)).toBe(result);
       expect(Reports.findOne.calls.argsFor(0)).toEqual([reportId]);
     });
   });
