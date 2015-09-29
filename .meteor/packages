@@ -16,3 +16,5 @@ underscore
 ian:accounts-ui-bootstrap-3
 iron:router
 jagi:astronomy-validators
+standard-minifiers
+sacha:spin
