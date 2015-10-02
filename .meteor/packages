@@ -17,3 +17,6 @@ iron:router
 jagi:astronomy-validators
 standard-minifiers
 sacha:spin
+fortawesome:fontawesome
+tsega:bootstrap3-datetimepicker
+momentjs:moment

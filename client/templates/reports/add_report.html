@@ -1,0 +1,78 @@
+<template name="addReport">
+    {{#if currentUser}}
+        {{> reportForm}}
+    {{else}}
+        {{> accessDenied}}
+    {{/if}}
+</template>
+
+<template name="reportForm">
+    <form class="main form page" id="formAddReport">
+        <div class="form-group">
+
+            {{#with field="title"}}
+                {{> displayError}}
+            {{/with}}
+
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+                <input name="title" id="title" type="text" value="" placeholder="Your Title" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{#with field="eventDate"}}
+                {{> displayError}}
+            {{/with}}
+
+            <label class="control-label" for="eventDate">Event Date</label>
+            <div class="controls">
+                <div class="input-group datetimepicker">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="set-due-date form-control" name="eventDate" type="text"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{#with field="explanation"}}
+                {{> displayError}}
+            {{/with}}
+
+            <label class="control-label" for="explanation">Explanation</label>
+            <div class="controls">
+                <textarea class="form-control" rows="3" name="explanation" id="explanation"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{#with field="kind"}}
+                {{> displayError}}
+            {{/with}}
+
+            <label class="control-label" for="kind">Kind</label>
+            <div class="controls">
+                <select name="kind" id="kind" class="form-control">
+                    <option>Harassment</option>
+                </select>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
+</template>
+
+
+<template name="displayError">
+    {{#if (errorsForField field)}}
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{errorsForField field}}
+        </div>
+    {{/if}}
+</template>

@@ -27,6 +27,7 @@ ecmascript-collections@0.1.6
 ejson@1.0.7
 email@1.0.7
 fastclick@1.0.7
+fortawesome:fontawesome@4.4.0
 geojson-utils@1.0.4
 html-tools@1.0.5
 htmljs@1.0.5
@@ -56,6 +57,7 @@ meteor-platform@1.2.3
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-status-bar@1.0.6
+momentjs:moment@2.8.4
 mongo@1.1.2
 mongo-id@1.0.1
 mrt:moment@2.8.1
@@ -92,6 +94,7 @@ stylus@2.511.0_2
 templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9
+tsega:bootstrap3-datetimepicker@4.17.37_1
 twbs:bootstrap@3.3.5
 ui@1.0.8
 underscore@1.0.4
