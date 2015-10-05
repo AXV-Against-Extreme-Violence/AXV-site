@@ -1,7 +1,7 @@
 Meteor.publish('reports', function(){
-    return Reports.find();
+    return Reports.find({});
 });
 
 Meteor.publish('aggressors', function(){
-    return Aggressors.find();
+    return Aggressors.find({});
 });

@@ -271,10 +271,13 @@ Template.reportForm.events({
             report.save();
             console.log('saved');
             Session.set('report', null);
+            Router.go('reportItem', {_id: report._id});
+
         } else {
             Session.set('report', report);
+            Session.set('validationErrors', report.getValidationErrors());
         }
-        Router.go('reportItem', {_id: report._id});
+
     }
 });
 
