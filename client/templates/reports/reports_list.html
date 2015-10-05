@@ -1,7 +1,7 @@
-<!-- TODO Search support -->
+
 <template name="reportsList">
     <h1>Reports</h1>
-
+    {{> esInput index="reports" class="form-control" placeholder="Search..." allDocsOnEmpty=true}}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -10,9 +10,22 @@
         </tr>
         </thead>
         <tbody>
-        {{#each reports}}
-            {{>reportItemTable}}
-        {{/each}}
+
+        {{#ifEsIsSearching index="reports"}}
+            <div>Loading...</div>
+        {{else}}
+                {{#esEach index="reports"}}
+                    {{>reportItemTable}}
+                {{/esEach}}
+
+            {{> esLoadMoreButton index="reports"}}
+        {{/ifEsIsSearching}}
+
+        {{#ifEsHasNoResults index="reports"}}
+            <div class="no-results">No results found!</div>
+        {{/ifEsHasNoResults}}
+
+
         </tbody>
     </table>
 
