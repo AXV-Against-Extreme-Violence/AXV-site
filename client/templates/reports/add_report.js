@@ -68,7 +68,12 @@ Template.searchBox.events({
    'keyup .box': function ()
    {
        Session.set('term', $('.box').val());
-   }
+   },
+    'click #addWithAlias': function (){
+        var newA = new Aggressor();
+        newA.aliases = [Session.get('term')];
+        newA.save();
+    }
 });
 
 Template.searchBox.helpers({
@@ -160,6 +165,7 @@ Template.reportForm.events({
 
     'click form': function (e){
         var t = $('#formAddReport');
+
         var report          = Session.get('report');
         if (!report || report == undefined || report == null)
         {
