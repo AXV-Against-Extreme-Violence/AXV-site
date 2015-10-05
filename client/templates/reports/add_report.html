@@ -19,7 +19,7 @@
 
             <label class="control-label" for="title">Title</label>
             <div class="controls">
-                <input name="title" id="title" type="text" value="" placeholder="Your Title" class="form-control"/>
+                <input name="title" id="title" type="text" value="{{title}}" placeholder="Your Title" class="form-control"/>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
 
             <label class="control-label" for="explanation">Explanation</label>
             <div class="controls">
-                <textarea class="form-control" rows="3" name="explanation" id="explanation"></textarea>
+                <textarea class="form-control" rows="3" name="explanation" value="{{explanation}}" id="explanation"></textarea>
             </div>
         </div>
 
@@ -59,18 +59,43 @@
             <label class="control-label" for="kind">Kind</label>
             <div class="controls">
                 <select name="kind" id="kind" class="form-control">
-                    <option>Harassment</option>
+                    <option selected="{{isEqual kind 'Harassment'}}">Harassment</option>
+                    <option selected="{{isEqual kind 'Violence'}}">Violence</option>
                 </select>
             </div>
         </div>
-
-        <div id="dropzone" class="dropzone">
-            <div class="well well-drop-zone">
-                Drop image(s) here to upload
+        <div class="form-group">
+            <div class="controls">
+                <label class="control-label" for="fileToUpload">Upload Photos</label>
+                <input name="fileToUpload" type="file" id="fileToUpload" accept="image/*">
             </div>
         </div>
 
         <input type="submit" value="Submit" class="btn btn-primary"/>
+        <div class="form-group">
+            {{#if photos}}
+            <h4>Photos Uploaded</h4>
+            {{/if}}
+            <div class="row">
+                {{#each photos}}
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+
+
+                            <img src="{{this}}"/>
+
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+
+
+
+
+
+
     </form>
 </template>
 
@@ -83,4 +108,12 @@
             {{errorsForField field}}
         </div>
     {{/if}}
+</template>
+
+<template name="progressBar">
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            <span class="sr-only">{{progress}}% Complete</span>
+        </div>
+    </div>
 </template>
