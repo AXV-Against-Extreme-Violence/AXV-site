@@ -69,6 +69,12 @@ Template.reportForm.helpers({
 
         var report = Session.get('report');
         return report.kind;
+    },
+    listOfAliases: function (){
+        return this.aliases.join(', ');
+    },
+    noNames: function (){
+        return !(this.firstName || this.lastName);
     }
 });
 
@@ -107,6 +113,12 @@ Template.searchBox.helpers({
     isAdded: function(aggressorID){
         var report = Session.get('report');
         return _.contains(report.get()['aggressors'], aggressorID);
+    },
+    listOfAliases: function (){
+        return this.aliases.join(', ');
+    },
+    noNames: function (){
+        return !(this.firstName || this.lastName);
     }
 });
 

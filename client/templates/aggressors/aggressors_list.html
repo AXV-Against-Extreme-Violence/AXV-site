@@ -1,4 +1,40 @@
-<!--TODO AggressorsList-->
-<template name="aggressorsList">
 
+<template name="aggressorsList">
+    <h1>Aggressors</h1>
+    {{> esInput index="aggressors" class="form-control"  placeholder="Search..." allDocsOnEmpty=true}}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Alias</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {{#ifEsIsSearching index="aggressors"}}
+            <div>Loading...</div>
+        {{else}}
+            {{#esEach index="aggressors"}}
+                {{>aggressorItemTable}}
+            {{/esEach}}
+
+            {{> esLoadMoreButton index="aggressors"}}
+        {{/ifEsIsSearching}}
+
+        {{#ifEsHasNoResults index="aggressors"}}
+            <div class="no-results">No results found!</div>
+        {{/ifEsHasNoResults}}
+
+
+        </tbody>
+    </table>
+
+</template>
+
+
+<template name="aggressorItemTable">
+    <tr class="rowItem" style="cursor: pointer;">
+        <td>{{#if noNames}}Unknown{{else}}{{firstName}} {{lastName}}{{/if}}</td>
+        <td>{{listOfAliases}}</td>
+    </tr>
 </template>

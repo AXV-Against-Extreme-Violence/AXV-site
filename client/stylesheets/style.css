@@ -1,0 +1,22 @@
+.h1 .h2 .h3 .h4 .h5 .h6{
+    color: white;
+}
+
+.rowItem:hover {
+    color: black;
+}
+
+
+body {
+    height:100%;
+    min-height: 100%;
+}
+
+.form-control {
+    background-color:rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.btn-secondary {
+    background-color:lightgreen;
+}

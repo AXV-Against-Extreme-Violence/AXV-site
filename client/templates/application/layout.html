@@ -1,11 +1,16 @@
 <!-- TODO UX refinements -->
 <!-- TODO Mobile app testing and refinement -->
+<body style=" background-attachment: fixed; padding-top: 70px;color:white;background-color:#1b1b1b; background-image: url('bg.jpg');background-repeat: no-repeat;background-size: cover;"></body>
+<head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></head>
+
 <template name="layout">
     {{> header}}
-<div class="container">
+<div class="container-fluid" style="max-width: 700px; border-color: black; border-bottom-width: 10px;">
 
     <div id="main">
         {{> yield}}
     </div>
+
 </div>
+
 </template>

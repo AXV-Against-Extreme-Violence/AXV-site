@@ -11,11 +11,12 @@
     <form class="main form page" id="formAddReport">
         <div class="form-group">
 
+
+
+            <label class="control-label" for="title">Title</label>
             {{#with field="title"}}
                 {{> displayError}}
             {{/with}}
-
-            <label class="control-label" for="title">Title</label>
             <div class="controls">
                 <input name="title" id="title" type="text" value="{{title}}" placeholder="Your Title" class="form-control"/>
             </div>
@@ -23,11 +24,12 @@
 
         <div class="form-group">
 
+
+
+            <label class="control-label" for="eventDate">Event Date</label>
             {{#with field="eventDate"}}
                 {{> displayError}}
             {{/with}}
-
-            <label class="control-label" for="eventDate">Event Date</label>
             <div class="controls">
                 <div class="input-group datetimepicker">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -38,11 +40,12 @@
 
         <div class="form-group">
 
+
+
+            <label class="control-label" for="explanation">Explanation</label>
             {{#with field="explanation"}}
                 {{> displayError}}
             {{/with}}
-
-            <label class="control-label" for="explanation">Explanation</label>
             <div class="controls">
                 <textarea class="form-control" rows="3" name="explanation" value="{{explanation}}" id="explanation"></textarea>
             </div>
@@ -50,11 +53,12 @@
 
         <div class="form-group">
 
+
+            <label class="control-label" for="kind">Kind</label>
             {{#with field="kind"}}
                 {{> displayError}}
             {{/with}}
 
-            <label class="control-label" for="kind">Kind</label>
             <div class="controls">
                 <select name="kind" id="kind" class="form-control">
                     <option selected="{{isEqual kind 'Harassment'}}">Harassment</option>
@@ -92,7 +96,15 @@
                 <input name="documentToUpload" class="form-control" type="file" id="documentToUpload" accept="application/pdf">
             </div>
         </div>
-        {{> searchBox}}
+
+        <div class="form-group">
+            <div class="controls">
+                <label class="control-label" for="documentToUpload">Add Aggressors</label>
+                {{> searchBox id="addReport" allDocsOnEmpty=false}}
+            </div>
+        </div>
+
+
 
         <input type="submit" value="Submit" class="btn btn-primary"/>
         <div class="form-group">
@@ -105,7 +117,10 @@
 
 
             {{#with (aggressorWithId this)}}
-            {{name}} {{lastName}} <br/>({{#each aliases}}{{this}} {{/each}})<br/>
+
+                {{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
+                    {{#if listOfAliases}} ({{listOfAliases}}){{/if}}
+                {{/if}} <br/>
             {{/with}}
 
 
@@ -201,13 +216,20 @@
         {{#ifEsIsSearching index="aggressors"}}
             <div>Loading...</div>
         {{else}}
+            <br/>
             <div class="results-wrapper">
             {{#esEach index="aggressors"}}
                 {{#if (isAdded this._id)}}
                     {{else}}
-                    <li>Name of the aggressor: {{name}} {{lastName}} ({{#each aliases}}{{this}} {{/each}})
-                        <input id="addToReport" type="button" class="btn btn-secondary" value="Add to report"/>
-                    </li>
+                    <div class="form-group">
+                    <div class="input-group">
+                    <input id="addToReport" type="button" class="btn btn-secondary" value="+  {{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
+                        {{#if listOfAliases}} ({{listOfAliases}}){{/if}}
+                    {{/if}}"/>
+
+
+                    </div>
+                    </div>
                 {{/if}}
 
             {{/esEach}}
@@ -220,7 +242,7 @@
         {{/ifEsHasNoResults}}
         {{#ifEsInputIsEmpty index="aggressors"}}
         {{else}}
-            <li><input id="addWithAlias" type="button" class="btn btn-secondary" value="Add Aggressor with '{{searchTerm}}' alias"/></li>
+            <input id="addWithAlias" type="button" class="btn btn-secondary" value="Add Aggressor with '{{searchTerm}}' alias"/>
         {{/ifEsInputIsEmpty}}
     </ul>
 </template>
