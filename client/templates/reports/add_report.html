@@ -1,5 +1,3 @@
-
-<!-- TODO add aggressor selection/addition -->
 <!-- TODO add video upload to S3 -->
 <template name="addReport">
     {{#if currentUser}}
@@ -98,6 +96,23 @@
 
         <input type="submit" value="Submit" class="btn btn-primary"/>
         <div class="form-group">
+            {{#if aggressors}}
+                <h4>Aggressors Added</h4>
+            {{/if}}
+
+            {{#each aggressors}}
+
+
+
+            {{#with (aggressorWithId this)}}
+            {{name}} {{lastName}} <br/>({{#each aliases}}{{this}} {{/each}})<br/>
+            {{/with}}
+
+
+            {{/each}}
+
+        </div>
+        <div class="form-group">
             {{#if links}}
                 <h4>Links Added</h4>
             {{/if}}
@@ -188,7 +203,13 @@
         {{else}}
             <div class="results-wrapper">
             {{#esEach index="aggressors"}}
-                <li>Name of the aggressor: {{name}} {{lastName}} ({{#each aliases}}{{this}} {{/each}})</li>
+                {{#if (isAdded this._id)}}
+                    {{else}}
+                    <li>Name of the aggressor: {{name}} {{lastName}} ({{#each aliases}}{{this}} {{/each}})
+                        <input id="addToReport" type="button" class="btn btn-secondary" value="Add to report"/>
+                    </li>
+                {{/if}}
+
             {{/esEach}}
 
             </div>

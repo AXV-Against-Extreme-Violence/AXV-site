@@ -41,6 +41,14 @@ Template.reportForm.helpers({
         var report = Session.get('report');
         return report.evidence.get('links');
     },
+    aggressors: function (){
+        var report = Session.get('report');
+        return report.aggressors;
+    },
+    aggressorWithId: function (aId)
+    {
+      return Aggressors.findOne(aId);
+    },
     title: function (){
         var report = Session.get('report');
         var date = report.eventDate;
@@ -73,6 +81,21 @@ Template.searchBox.events({
         var newA = new Aggressor();
         newA.aliases = [Session.get('term')];
         newA.save();
+    },
+    'click #addToReport': function ()
+    {
+        var report          = Session.get('report');
+        if (!report || report == undefined || report == null)
+        {
+            report = new Report();
+            Session.set('report', report);
+        }
+        if (!report.aggressors || report.aggressors == undefined || report.aggressors == null)
+        {
+            report.aggressors = [];
+        }
+        report.push('aggressors', this._id);
+        Session.set('report', report);
     }
 });
 
@@ -80,7 +103,11 @@ Template.searchBox.helpers({
    searchTerm: function()
    {
        return Session.get('term');
-   }
+   },
+    isAdded: function(aggressorID){
+        var report = Session.get('report');
+        return _.contains(report.get()['aggressors'], aggressorID);
+    }
 });
 
 Template.displayError.helpers({
