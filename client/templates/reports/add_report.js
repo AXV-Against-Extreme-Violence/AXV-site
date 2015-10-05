@@ -32,6 +32,14 @@ Template.reportForm.helpers({
        var report = Session.get('report');
        return report.evidence.photos;
    },
+    documents: function (){
+        var report = Session.get('report');
+        return report.evidence.get('documents');
+    },
+    links: function (){
+        var report = Session.get('report');
+        return report.evidence.get('links');
+    },
     title: function (){
         var report = Session.get('report');
         var date = report.eventDate;
@@ -70,7 +78,7 @@ Template.displayError.helpers({
 
 Template.reportForm.events({
 
-    'change [type=file]': function (e) {
+    'change #fileToUpload': function (e,t) {
         var file = document.getElementById('fileToUpload').files[0];
         processImage(file, 300, 300, function(dataURI) {
             var blob = dataURItoBlob(dataURI);
@@ -86,7 +94,9 @@ Template.reportForm.events({
                 if (!report.evidence || report.evidence == undefined || report.evidence == null)
                 {
                     report.evidence = new Evidence();
+                    report.evidence.documents = [];
                     report.evidence.photos = [];
+                    report.evidence.links = [];
                 }
                 report.evidence.push('photos', downloadUrl);
                 Session.set('report', report);
@@ -95,6 +105,44 @@ Template.reportForm.events({
         });
 
     },
+
+    'change #documentToUpload': function (e,t) {
+        var file = document.getElementById('documentToUpload').files[0];
+
+            documentUploader.send(file, function (error, downloadUrl) {
+                if (error !== null)
+                {
+                    toastr.error('Failed to upload'+error);
+                    return;
+                }
+                toastr.success('Succeeded uploading');
+
+                var report          = Session.get('report');
+                if (!report || report == undefined || report == null)
+                {
+                    report = new Report();
+                    Session.set('report', report);
+                }
+                if (!report.evidence || report.evidence == undefined || report.evidence == null)
+                {
+                    report.evidence = new Evidence();
+                    report.evidence.documents = [];
+                    report.evidence.photos = [];
+                    report.evidence.links = [];
+                }
+
+                var document = {};
+                document.name = file.name;
+                document.url = downloadUrl;
+                console.log(document.name);
+                console.log(document.url);
+                report.evidence.push('documents', document);
+                Session.set('report', report);
+                document.getElementById('documentToUpload').value = null;
+            });
+
+    },
+
     'click form': function (e){
         var t = $('#formAddReport');
         var report          = Session.get('report');
@@ -145,6 +193,24 @@ Template.reportForm.events({
         {
             report = new Report();
             Session.set('report', report);
+        }
+        var link = $(e.target).find('[name=link]').val();
+        if  (link && link != null && link != undefined)
+        {
+            if (!report.evidence || report.evidence == undefined || report.evidence == null)
+            {
+                report.evidence = new Evidence();
+                report.evidence.documents = [];
+                report.evidence.photos = [];
+                report.evidence.links = [];
+            }
+            report.evidence.push('links', link);
+
+            document.getElementById('link').value = null;
+            report.validate(false);
+            Session.set('report', report);
+            return;
+
         }
         report.title        = $(e.target).find('[name=title]').val();
         report.kind         = $(e.target).find('[name=kind]').val();

@@ -65,14 +65,72 @@
                 </select>
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="controls">
+                <label class="control-label" for="link">Add Links</label>
+                <div class="input-group">
+                    <input name="link" type="text" id="link" class="form-control">
+                    <div class="input-group-btn">
+                        <input type="submit" value="Add" name="addLink" class="btn btn-secondary"/>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="controls">
                 <label class="control-label" for="fileToUpload">Upload Photos</label>
-                <input name="fileToUpload" type="file" id="fileToUpload" accept="image/*">
+                <input name="fileToUpload" type="file" class="form-control" id="fileToUpload" accept="image/*">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="controls">
+                <label class="control-label" for="documentToUpload">Upload PDFs</label>
+                <input name="documentToUpload" class="form-control" type="file" id="documentToUpload" accept="application/pdf">
             </div>
         </div>
 
         <input type="submit" value="Submit" class="btn btn-primary"/>
+        <div class="form-group">
+            {{#if links}}
+                <h4>Links Added</h4>
+            {{/if}}
+
+            {{#each links}}
+
+
+
+
+                <a href="{{this}}" target="_blank">{{this}}</a><br/>
+
+
+
+            {{/each}}
+
+        </div>
+        <div class="form-group">
+            {{#if documents}}
+                <h4>PDFs Uploaded</h4>
+            {{/if}}
+
+                {{#each documents}}
+
+
+
+
+                            <a href="{{url}}" target="_blank">{{name}}</a><br/>
+
+
+
+                {{/each}}
+
+        </div>
         <div class="form-group">
             {{#if photos}}
             <h4>Photos Uploaded</h4>
