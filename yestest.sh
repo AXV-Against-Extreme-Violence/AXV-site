@@ -1,0 +1,1 @@
+meteor add sanjo:jasmine

@@ -1,0 +1,2 @@
+meteor remove sanjo:jasmine
+
