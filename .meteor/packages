@@ -21,3 +21,5 @@ tsega:bootstrap3-datetimepicker
 momentjs:moment
 raix:ui-dropped-event
 chrismbeckett:toastr
+edgee:slingshot
+ccorcos:clientside-image-manipulation
