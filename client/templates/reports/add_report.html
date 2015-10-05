@@ -1,6 +1,5 @@
 
 <!-- TODO add aggressor selection/addition -->
-<!-- TODO add document uploading to S3 -->
 <!-- TODO add video upload to S3 -->
 <template name="addReport">
     {{#if currentUser}}
@@ -95,6 +94,7 @@
                 <input name="documentToUpload" class="form-control" type="file" id="documentToUpload" accept="application/pdf">
             </div>
         </div>
+        {{> searchBox}}
 
         <input type="submit" value="Submit" class="btn btn-primary"/>
         <div class="form-group">
@@ -175,4 +175,31 @@
             <span class="sr-only">{{progress}}% Complete</span>
         </div>
     </div>
+</template>
+
+<template name="searchBox">
+    {{> esInput index="aggressors" placeholder="Search..." class="form-control box"}}
+
+    <ul>
+
+
+        {{#ifEsIsSearching index="aggressors"}}
+            <div>Loading...</div>
+        {{else}}
+            <div class="results-wrapper">
+            {{#esEach index="aggressors"}}
+                <li>Name of the aggressor: {{name}} {{lastName}} ({{#each aliases}}{{this}} {{/each}})</li>
+            {{/esEach}}
+
+            </div>
+            {{> esLoadMoreButton index="aggressors"}}
+        {{/ifEsIsSearching}}
+        {{#ifEsHasNoResults index="aggressors"}}
+            <div class="no-results">No results found!</div>
+        {{/ifEsHasNoResults}}
+        {{#ifEsInputIsEmpty index="aggressors"}}
+        {{else}}
+            <li><input type="button" class="btn btn-secondary" value="Add Aggressor with '{{searchTerm}}' alias"/></li>
+        {{/ifEsInputIsEmpty}}
+    </ul>
 </template>

@@ -9,6 +9,7 @@ function dataURItoBlob(dataURI) {
     return new Blob([new Uint8Array(array)], {type: mimeString});
 }
 
+
 Template.reportForm.onRendered(function() {
     var report = Session.get('report');
     var date = report.eventDate;
@@ -61,6 +62,20 @@ Template.reportForm.helpers({
         var report = Session.get('report');
         return report.kind;
     }
+});
+
+Template.searchBox.events({
+   'keyup .box': function ()
+   {
+       Session.set('term', $('.box').val());
+   }
+});
+
+Template.searchBox.helpers({
+   searchTerm: function()
+   {
+       return Session.get('term');
+   }
 });
 
 Template.displayError.helpers({
