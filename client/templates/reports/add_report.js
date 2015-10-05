@@ -139,6 +139,8 @@ Template.reportForm.events({
 
     'change #fileToUpload': function (e,t) {
         var file = document.getElementById('fileToUpload').files[0];
+        document.getElementById('fileToUpload').value = null;
+        toastr.warning('Uploading photo!');
         processImage(file, 300, 300, function(dataURI) {
             var blob = dataURItoBlob(dataURI);
             uploader.send(blob, function (error, downloadUrl) {
@@ -166,8 +168,10 @@ Template.reportForm.events({
     },
 
     'change #documentToUpload': function (e,t) {
+        var files = document.getElementById('documentToUpload').files;
         var file = document.getElementById('documentToUpload').files[0];
-
+            toastr.warning('Uploading document!');
+            $('#documentToUpload').val(null);
             documentUploader.send(file, function (error, downloadUrl) {
                 if (error !== null)
                 {
