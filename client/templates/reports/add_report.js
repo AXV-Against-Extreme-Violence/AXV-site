@@ -185,7 +185,7 @@ Template.reportForm.events({
                 console.log(document.url);
                 report.evidence.push('documents', document);
                 Session.set('report', report);
-                document.getElementById('documentToUpload').value = null;
+                $('#documentToUpload').val(null);
             });
 
     },
