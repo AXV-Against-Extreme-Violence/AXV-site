@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e2b334c-42db-48de-bc3e-2d622f6dddb6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="axv.iws" />
     <ignored path=".idea/workspace.xml" />
