@@ -1,5 +1,18 @@
 <template name="aggressorItem">
-    {{firstName}} {{lastName}}
-        <br/>
-    {{#each aliases}} {{this}} {{/each}}
+
+    <h1>
+        {{#if realName}}
+            {{firstName}} {{lastName}}
+        {{else}}
+            Unknown Name
+        {{/if}}
+    </h1>
+        Aliases: {{aliasesString}}
+    {{#if reportsWithAggressor}}
+    <h2>Reports</h2>
+    {{/if}}
+    {{#each reportsWithAggressor}}
+        <h3><a href="{{pathFor 'reportItem'}}">{{title}}</a></h3>
+        {{> reportDetails}}
+    {{/each}}
 </template>

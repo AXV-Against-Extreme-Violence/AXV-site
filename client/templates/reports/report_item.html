@@ -1,6 +1,77 @@
 <template name="reportItem">
     <h1>{{title}}</h1>
+    {{> reportDetails}}
+    {{> aggressors}}
+    {{> evidence}}
+</template>
+
+<template name="reportDetails">
     <p><b>{{kind}}</b></p>
-    <p>{{eventDate}}</p>
+    <p>{{formattedDate}}</p>
     <p>{{explanation}}</p>
 </template>
+
+<template name="aggressors">
+    {{#if aggressors}}
+    <h2>Aggressors</h2>
+    {{/if}}
+    {{#each aggressors}}
+        {{#with (aggressorForId this)}}
+            {{> aggressor}}
+        {{/with}}
+    {{/each}}
+</template>
+
+<template name="aggressor">
+    <a href="{{pathFor 'aggressorItem'}}">
+        {{firstName}} {{lastName}}
+        {{#if realName}} {{else}} Unknown name{{/if}}
+        {{#if aliases}}({{aliasesString}}){{/if}}
+    </a>
+</template>
+
+<template name="evidence">
+    {{#with evidence}}
+        <h2>Evidence</h2>
+        {{> photos}}
+        {{> documents}}
+        {{> links}}
+    {{/with}}
+</template>
+
+<template name="documents">
+    {{#if documents}}
+        <h4>PDFs</h4>
+    {{/if}}
+    {{#each documents}}
+        <a href="{{url}}" target="_blank">{{name}}</a><br/>
+    {{/each}}
+</template>
+
+<template name="links">
+    {{#if links}}
+        <h4>Links</h4>
+    {{/if}}
+    {{#each links}}
+        <a href="{{this}}" target="_blank">{{this}}</a><br/>
+    {{/each}}
+</template>
+
+<template name="photos">
+    {{#if photos}}
+        <h3>Photos</h3>
+    {{/if}}
+    <div class="row">
+        {{#each photos}}
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+
+
+                   <a href="{{this}}" rel="prettyPhoto" target="_blank"><img src="{{this}}"/></a>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>
+

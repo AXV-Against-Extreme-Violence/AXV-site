@@ -141,7 +141,7 @@ Template.reportForm.events({
         var file = document.getElementById('fileToUpload').files[0];
         document.getElementById('fileToUpload').value = null;
         toastr.warning('Uploading photo!');
-        processImage(file, 300, 300, function(dataURI) {
+        processImage(file, 1024, 1024, function(dataURI) {
             var blob = dataURItoBlob(dataURI);
             uploader.send(blob, function (error, downloadUrl) {
                 toastr.success('Succeeded uploading');
