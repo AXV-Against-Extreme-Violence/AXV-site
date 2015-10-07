@@ -20,3 +20,7 @@ body {
 .btn-secondary {
     background-color:lightgreen;
 }
+
+.bootstrap-datetimepicker-widget {
+    background-color: black;
+}
