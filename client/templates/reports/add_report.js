@@ -13,9 +13,12 @@ function dataURItoBlob(dataURI) {
 Template.reportForm.onRendered(function() {
     var report = Session.get('report');
     var date = report.eventDate;
-    console.log('adate '+date);
-    this.$('.datetimepicker').datetimepicker({
-        defaultDate:date
+    if (date == undefined || date == null)
+    {
+        date = new Date();
+    }
+    $('.datetimepicker').datetimepicker({
+        defaultDate:new Date()
     }).on("dp.change", function(e) {
         var t = $('#formAddReport');
         report.set('eventDate', $(t).find('[name=eventDate]').val());
@@ -52,8 +55,12 @@ Template.reportForm.helpers({
     title: function (){
         var report = Session.get('report');
         var date = report.eventDate;
+        if (date == undefined || date == null)
+        {
+            date = new Date();
+        }
         $('.datetimepicker').datetimepicker({
-            defaultDate:date
+            defaultDate:new Date()
         }).on("dp.change", function(e) {
                 var t = $('#formAddReport');
                 report.set('eventDate', $(t).find('[name=eventDate]').val());
@@ -94,6 +101,7 @@ Template.searchBox.events({
         if (!report || report == undefined || report == null)
         {
             report = new Report();
+            report.eventDate = new Date();
             Session.set('report', report);
         }
         if (!report.aggressors || report.aggressors == undefined || report.aggressors == null)
@@ -150,6 +158,7 @@ Template.reportForm.events({
                 if (!report || report == undefined || report == null)
                 {
                     report = new Report();
+                    report.eventDate = new Date();
                     Session.set('report', report);
                 }
                 if (!report.evidence || report.evidence == undefined || report.evidence == null)
@@ -184,6 +193,7 @@ Template.reportForm.events({
                 if (!report || report == undefined || report == null)
                 {
                     report = new Report();
+                    report.eventDate = new Date();
                     Session.set('report', report);
                 }
                 if (!report.evidence || report.evidence == undefined || report.evidence == null)
@@ -213,6 +223,7 @@ Template.reportForm.events({
         if (!report || report == undefined || report == null)
         {
             report = new Report();
+            report.eventDate = new Date();
             Session.set('report', report);
         }
         report.set('eventDate', $(t).find('[name=eventDate]').val());
@@ -225,6 +236,7 @@ Template.reportForm.events({
         if (!report || report == undefined || report == null)
         {
             report = new Report();
+            report.eventDate = new Date();
             Session.set('report', report);
         }
         report.set('eventDate', $(t).find('[name=eventDate]').val());
@@ -256,6 +268,7 @@ Template.reportForm.events({
         if (!report || report == undefined || report == null)
         {
             report = new Report();
+            report.eventDate = new Date();
             Session.set('report', report);
         }
         var link = $(e.target).find('[name=link]').val();
