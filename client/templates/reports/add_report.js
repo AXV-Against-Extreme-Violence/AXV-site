@@ -11,15 +11,19 @@ function dataURItoBlob(dataURI) {
 
 
 Template.reportForm.onRendered(function() {
-    var report = Session.get('report');
-    var date = report.eventDate;
-    if (date == undefined || date == null)
+
+    var a = Session.get('report');
+    var d;
+    if (a != undefined && a != null && a.eventDate != null && a.eventDate != undefined){
+        d = a.eventDate;
+    } else
     {
-        date = new Date();
+        d = new Date();
     }
     $('.datetimepicker').datetimepicker({
-        defaultDate:new Date()
+        defaultDate:d
     }).on("dp.change", function(e) {
+        var report = Session.get('report');
         var t = $('#formAddReport');
         report.set('eventDate', $(t).find('[name=eventDate]').val());
         Session.set('report',report);
@@ -54,18 +58,6 @@ Template.reportForm.helpers({
     },
     title: function (){
         var report = Session.get('report');
-        var date = report.eventDate;
-        if (date == undefined || date == null)
-        {
-            date = new Date();
-        }
-        $('.datetimepicker').datetimepicker({
-            defaultDate:new Date()
-        }).on("dp.change", function(e) {
-                var t = $('#formAddReport');
-                report.set('eventDate', $(t).find('[name=eventDate]').val());
-                Session.set('report',report);
-            });
         return report.title;
     },
     explanation: function (){
@@ -84,6 +76,31 @@ Template.reportForm.helpers({
         return !(this.firstName || this.lastName);
     }
 });
+setupDate = function ()
+{
+    var report = Session.get('report');
+    if (!report || report == undefined || report == null)
+    {
+        return;
+    }
+    var date = report.eventDate;
+
+    if (date == undefined || date == null)
+    {
+        date = new Date();
+        report.eventDate = date;
+    }
+
+    var picker = $('.datetimepicker').datetimepicker();
+    if (picker != undefined && picker.date != undefined)
+    {
+        alert(date);
+        picker.date(date);
+    }
+
+
+};
+var handle = Tracker.autorun(setupDate);
 
 Template.searchBox.events({
    'keyup .box': function ()
@@ -226,23 +243,11 @@ Template.reportForm.events({
             report.eventDate = new Date();
             Session.set('report', report);
         }
-        report.set('eventDate', $(t).find('[name=eventDate]').val());
+
         report.validate(false);
         Session.set('report', report);
     },
-    'click .datetimepicker': function (e){
-        var t = $('#formAddReport');
-        var report          = Session.get('report');
-        if (!report || report == undefined || report == null)
-        {
-            report = new Report();
-            report.eventDate = new Date();
-            Session.set('report', report);
-        }
-        report.set('eventDate', $(t).find('[name=eventDate]').val());
-        report.validate(false);
-        Session.set('report', report);
-    },
+
     'change .form-control': function(e) {
         var t = $('#formAddReport');
         var report          = Session.get('report');
@@ -253,7 +258,7 @@ Template.reportForm.events({
         }
         report.title        = $(t).find('[name=title]').val();
         report.kind         = $(t).find('[name=kind]').val();
-        report.set('eventDate', $(t).find('[name=eventDate]').val());
+
         report.explanation  = $(t).find('[name=explanation]').val();
         report.date         = new Date();
         report.userID       = Meteor.userId();
@@ -291,7 +296,7 @@ Template.reportForm.events({
         }
         report.title        = $(e.target).find('[name=title]').val();
         report.kind         = $(e.target).find('[name=kind]').val();
-        report.set('eventDate', $(e.target).find('[name=eventDate]').val());
+
         report.explanation  = $(e.target).find('[name=explanation]').val();
         report.date         = new Date();
         report.userID       = Meteor.userId();

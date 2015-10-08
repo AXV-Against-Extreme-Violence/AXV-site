@@ -1,5 +1,8 @@
 <template name="reportItem">
     <h1>{{title}}</h1>
+    {{#if isCurrentUserReport}}
+        <a id="edit" href="{{pathFor 'addReport'}}">Edit</a>
+    {{/if}}
     {{> reportDetails}}
     {{> aggressors}}
     {{> evidence}}

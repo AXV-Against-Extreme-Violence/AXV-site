@@ -1,7 +1,21 @@
 Template.reportItem.helpers({
-   formattedDate: function (){
-       return moment(this.eventDate).format("DD/MM/YYYY HH:MM");
+    isCurrentUserReport: function ()
+    {
+        return Meteor.userId() && Meteor.userId() == this.userID;
+    }
+});
+
+Template.reportItem.events({
+   'click #edit': function ()
+   {
+       Session.set('report', this);
    }
+});
+
+Template.reportDetails.helpers({
+    formattedDate: function (){
+        return moment(this.eventDate).format("DD/MM/YYYY HH:MM");
+    }
 });
 
 Template.aggressors.helpers({
