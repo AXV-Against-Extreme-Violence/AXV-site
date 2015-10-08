@@ -10,6 +10,13 @@
 body {
     height:100%;
     min-height: 100%;
+    background-attachment: fixed;
+    padding-top: 70px;
+    color:white;
+    background-color:#1b1b1b;
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-control {
