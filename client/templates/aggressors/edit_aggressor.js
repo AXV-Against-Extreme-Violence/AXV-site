@@ -52,7 +52,7 @@ Template.aliasAdd.events({
 });
 
 Template.firstNameEdit.events({
-   'change input': function (e){
+   'change .form-control': function (e){
        var aggressor = getAggressor();
        aggressor.name = $(e.target).val();
        setAggressor(aggressor);
@@ -60,7 +60,7 @@ Template.firstNameEdit.events({
 });
 
 Template.lastNameEdit.events({
-    'change input': function (){
+    'change .form-control': function (){
         var aggressor = getAggressor();
         aggressor.lastName = $(e.target).val();
         setAggressor(aggressor);
