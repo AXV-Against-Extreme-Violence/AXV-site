@@ -1,17 +1,23 @@
 <template name="editAggressor">
-    <form class="main form page" id="formEditReport">
-        <h1>Editing Aggressor {{> submitEdit}}</h1>
-        {{> firstNameEdit}}
-        {{> lastNameEdit}}
-        {{> aliasesEdit}}
+    {{#if currentUser}}
+        <form class="main form page" id="formEditReport">
 
-    </form>
+            <h1>Editing Aggressor {{> submitEdit}}</h1>
+            {{> firstNameEdit}}
+            {{> lastNameEdit}}
+            {{> aliasesEdit}}
+
+        </form>
+        {{else}}
+        {{> accessDenied}}
+    {{/if}}
+
 </template>
 
 <template name="firstNameEdit">
     <div class="form-group">
         <label class="control-label" for="title">First Name</label>
-        <input name="firstName" id="firstName" type="text" value="{{firstName}}" placeholder="a First Name" class="form-control"/>
+        <input name="firstName" id="firstName" type="text" value="{{name}}" placeholder="a First Name" class="form-control"/>
     </div>
 </template>
 
@@ -35,7 +41,7 @@
 <template name="aliasEdit">
 
     <div class="form-group">
-        <input type="button" id="removeAlias" value="Remove" name="removeAlias" class="btn btn-danger"/>
+
         <label class="control-label" for="removeAlias">{{this}}</label>
 
     </div>

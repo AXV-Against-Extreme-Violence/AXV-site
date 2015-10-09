@@ -3,12 +3,13 @@
     <h1>
 
         {{#if realName}}
-            {{firstName}} {{lastName}}
+            {{name}} {{lastName}}
         {{else}}
             Unknown Name
         {{/if}}
-        <!-- FIXME this should only be shown if you posted something about this person -->
-        <a href="{{pathFor 'editAggressor'}}"> Edit</a>
+        {{#if currentUser}}
+        <a id="edit" href="#"> edit</a>
+        {{/if}}
     </h1>
         Aliases: {{aliasesString}}
     {{#if reportsWithAggressor}}

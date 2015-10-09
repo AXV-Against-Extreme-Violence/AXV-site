@@ -3,7 +3,7 @@ Template.aggressorItemTable.helpers({
        return this.aliases.join(', ');
    },
     noNames: function (){
-        return !(this.firstName || this.lastName);
+        return !(this.name || this.lastName);
     }
 });
 

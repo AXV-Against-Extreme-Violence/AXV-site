@@ -14,8 +14,8 @@ Template.aliasesEdit.helpers({
 });
 
 Template.firstNameEdit.helpers({
-    firstName: function (){
-        return getAggressor().firstName;
+    name: function (){
+        return getAggressor().name;
     }
 });
 
@@ -23,22 +23,6 @@ Template.lastNameEdit.helpers({
     lastName: function (){
         return getAggressor().lastName;
     }
-});
-
-
-Template.aliasEdit.events({
-   'click #removeAlias': function (){
-       var aggressor = getAggressor();
-       var aliases = aggressor.aliases;
-       var alias = this;
-       alert(aliases);
-
-       //fixme array doesnt change
-       var without = _.without(aliases,alias);
-        alert(without);
-       aggressor.aliases = without;
-       setAggressor(aggressor);
-   }
 });
 
 Template.aliasAdd.events({
@@ -52,27 +36,35 @@ Template.aliasAdd.events({
 });
 
 Template.firstNameEdit.events({
-   'change .form-control': function (e){
+   'change input': function (e){
        var aggressor = getAggressor();
-       aggressor.name = $(e.target).val();
+       aggressor.set('name', $(e.target).val());
        setAggressor(aggressor);
    }
 });
 
 Template.lastNameEdit.events({
-    'change .form-control': function (){
+    'change input': function (e){
         var aggressor = getAggressor();
-        aggressor.lastName = $(e.target).val();
+        aggressor.set('lastName', $(e.target).val());
         setAggressor(aggressor);
     }
 });
 
 Template.editAggressor.events({
-   'submit form': function (){
-       // TODO update all fields
-       // TODO Validate
-       // TODO Save
-       // TODO clear session
-       // TODO route to aggressor
+   'submit form': function (e){
+       e.preventDefault();
+       var aggressor = getAggressor();
+       aggressor.name       = $('#firstName').val();
+       aggressor.lastName   = $('#lastName').val();
+       if (aggressor && aggressor.validate(false)){
+           aggressor.save(function(err, id) {
+                if(err!= undefined) alert(err);
+               var id = aggressor._id;
+               setAggressor(undefined);
+               Router.go('aggressorItem', {_id: id});
+           });
+
+       }
    }
 });
