@@ -31,3 +31,10 @@ body {
 .bootstrap-datetimepicker-widget {
     background-color: black;
 }
+
+.background {
+    position:absolute;
+    top:0;
+    left: 0;
+
+}
