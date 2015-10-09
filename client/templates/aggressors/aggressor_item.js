@@ -9,3 +9,9 @@ Template.aggressorItem.helpers({
         return Reports.find({aggressors:this._id});
     }
 });
+
+Template.aggressorItem.events({
+    'click #editButton': function (){
+        Session.set('aggressorEdit', Aggressors.findOne(this._id));
+    }
+});

@@ -1,0 +1,59 @@
+<template name="editAggressor">
+    <form class="main form page" id="formEditReport">
+        <h1>Editing Aggressor {{> submitEdit}}</h1>
+        {{> firstNameEdit}}
+        {{> lastNameEdit}}
+        {{> aliasesEdit}}
+
+    </form>
+</template>
+
+<template name="firstNameEdit">
+    <div class="form-group">
+        <label class="control-label" for="title">First Name</label>
+        <input name="firstName" id="firstName" type="text" value="{{firstName}}" placeholder="a First Name" class="form-control"/>
+    </div>
+</template>
+
+<template name="lastNameEdit">
+    <div class="form-group">
+        <label class="control-label" for="title">Last Name</label>
+        <input name="lastName" id="lastName" type="text" value="{{lastName}}" placeholder="a Last Name" class="form-control"/>
+    </div>
+</template>
+
+<template name="aliasesEdit">
+    <h2>Aliases</h2>
+    {{> aliasAdd}}
+    <h3>Existing</h3>
+    {{#each aliases}}
+        {{> aliasEdit}}
+    {{/each}}
+
+</template>
+
+<template name="aliasEdit">
+
+    <div class="form-group">
+        <input type="button" id="removeAlias" value="Remove" name="removeAlias" class="btn btn-danger"/>
+        <label class="control-label" for="removeAlias">{{this}}</label>
+
+    </div>
+</template>
+
+<template name="aliasAdd">
+    <div class="form-group">
+        <label class="control-label" for="newAlias">Add Alias</label>
+        <div class="input-group">
+            <input name="newAlias" id="newAlias" type="text" placeholder="a new alias" class="form-control"/>
+            <div class="input-group-btn">
+                <input type="submit" value="Add" name="addAlias" id="addAlias" class="btn btn-secondary"/>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="submitEdit">
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+</template>
+
