@@ -4,10 +4,13 @@
         <div style="margin-top:50px;">
 
         {{#each reports}}
+
             {{#each evidence.photos}}
                 <!-- <div class="col-sm-6 col-md-3">-->
-                    <div style="float:left; height:100px; width:100px; background-size: cover; background-image: url('{{this}}');">
+                <a href="#" style="display:block;">
+                    <div style="float:left; height:118px; width:118px; background-size: cover; background-image: url('{{this}}');">
                     </div>
+                </a>
                 <!--</div>-->
             {{/each}}
         {{/each}}
@@ -20,7 +23,7 @@
             <p class="pull-right visible-xs">
                 <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle stats</button>-->
             </p>
-            <div class="jumbotron" style="color: black; background-color: rgba(255, 255, 255, 0.73);">
+            <div class="jumbotron" style="color: white; background-color: transparent;">
                 <h1>Stop the abuse</h1>
                 <p>Persecution and aggression aren't ok. No more impune regimes.</p>
             </div><h2>FAQ</h2>
