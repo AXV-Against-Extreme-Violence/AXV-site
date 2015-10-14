@@ -70,6 +70,14 @@
 
         <div class="form-group">
             <div class="controls">
+                <label class="control-label" for="documentToUpload">Add Aggressors</label>
+                {{> searchBox id="addReport" allDocsOnEmpty=false}}
+            </div>
+        </div>
+        <h2>Evidence</h2>
+
+        <div class="form-group">
+            <div class="controls">
                 <label class="control-label" for="link">Add Links</label>
                 <div class="input-group">
                     <input name="link" type="text" id="link" class="form-control">
@@ -98,12 +106,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="controls">
-                <label class="control-label" for="documentToUpload">Add Aggressors</label>
-                {{> searchBox id="addReport" allDocsOnEmpty=false}}
-            </div>
-        </div>
+
 
 
 
@@ -243,7 +246,7 @@
         {{/ifEsHasNoResults}}
         {{#ifEsInputIsEmpty index="aggressors"}}
         {{else}}
-            <input id="addWithAlias" type="button" class="btn btn-secondary" value="Add Aggressor with '{{searchTerm}}' alias"/>
+            <input id="addWithAlias" type="button" class="btn btn-secondary" value="Create Aggressor with '{{searchTerm}}' alias"/>
         {{/ifEsInputIsEmpty}}
     </ul>
 </template>
