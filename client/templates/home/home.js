@@ -13,7 +13,7 @@ Template.home.helpers({
     },
     countVictims: function ()
     {
-        return Meteor.users.find({}).count();
+        return Counts.get('userCount');
     },
     isPlural: function (number)
     {
