@@ -74,7 +74,28 @@
                 {{> searchBox id="addReport" allDocsOnEmpty=false}}
             </div>
         </div>
+        <div class="form-group">
+            <div class="controls">
+                <h2>Photos</h2>
+                <label class="control-label" for="whoPhoto">Who's in the photo?</label>
+
+                <select class="form-control" id="who" name="whoPhoto">
+
+                    <option id="NO">You</option>
+                    {{#each aggressors}}
+                        {{#with (aggressorWithId this)}}
+
+                            <option id="{{this._id}}">{{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
+                            {{/if}}</option>
+                        {{/with}}
+                    {{/each}}
+                </select>
+                <label class="control-label" for="fileToUpload"> Photo</label>
+                <input name="fileToUpload" type="file" class="form-control" id="fileToUpload" accept="image/*">
+            </div>
+        </div>
         <h2>Evidence</h2>
+
 
         <div class="form-group">
             <div class="controls">
@@ -90,12 +111,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="controls">
-                <label class="control-label" for="fileToUpload">Upload Photos</label>
-                <input name="fileToUpload" type="file" class="form-control" id="fileToUpload" accept="image/*">
-            </div>
-        </div>
+
 
 
 

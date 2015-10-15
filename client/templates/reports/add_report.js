@@ -163,6 +163,7 @@ Template.displayError.helpers({
 Template.reportForm.events({
 
     'change #fileToUpload': function (e,t) {
+        var whoID = $('#who option:selected').attr('id');
         var file = document.getElementById('fileToUpload').files[0];
         document.getElementById('fileToUpload').value = null;
         toastr.warning('Uploading photo!');
@@ -170,23 +171,30 @@ Template.reportForm.events({
             var blob = dataURItoBlob(dataURI);
             uploader.send(blob, function (error, downloadUrl) {
                 toastr.success('Succeeded uploading');
-
-                var report          = Session.get('report');
-                if (!report || report == undefined || report == null)
+                if (whoID == "NO")
                 {
-                    report = new Report();
-                    report.eventDate = new Date();
+                    var report          = Session.get('report');
+                    if (!report || report == undefined || report == null)
+                    {
+                        report = new Report();
+                        report.eventDate = new Date();
+                        Session.set('report', report);
+                    }
+                    if (!report.evidence || report.evidence == undefined || report.evidence == null)
+                    {
+                        report.evidence = new Evidence();
+                        report.evidence.documents = [];
+                        report.evidence.photos = [];
+                        report.evidence.links = [];
+                    }
+                    report.evidence.push('photos', downloadUrl);
                     Session.set('report', report);
+                } else {
+                    var anA = Aggressors.findOne(whoID);
+                    anA.push('photos', downloadUrl);
+                    anA.save();
                 }
-                if (!report.evidence || report.evidence == undefined || report.evidence == null)
-                {
-                    report.evidence = new Evidence();
-                    report.evidence.documents = [];
-                    report.evidence.photos = [];
-                    report.evidence.links = [];
-                }
-                report.evidence.push('photos', downloadUrl);
-                Session.set('report', report);
+
                 document.getElementById('fileToUpload').value = null;
             });
         });
@@ -194,6 +202,7 @@ Template.reportForm.events({
     },
 
     'change #documentToUpload': function (e,t) {
+
         var files = document.getElementById('documentToUpload').files;
         var file = document.getElementById('documentToUpload').files[0];
             toastr.warning('Uploading document!');
