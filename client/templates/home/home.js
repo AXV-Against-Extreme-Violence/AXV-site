@@ -1,7 +1,7 @@
 Template.home.helpers({
-    reports: function()
+    aggressors: function()
     {
-        return Reports.find({});
+        return Aggressors.find({});
     },
     countReports: function ()
     {
