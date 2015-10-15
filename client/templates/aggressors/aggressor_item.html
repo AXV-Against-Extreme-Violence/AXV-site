@@ -1,5 +1,5 @@
 <template name="aggressorItem">
-
+<img src="{{firstPhoto}}"/>
     <h1>
 
         {{#if realName}}
@@ -12,6 +12,21 @@
         {{/if}}
     </h1>
         Aliases: {{aliasesString}}
+    {{#if firstPhoto}}
+        <h2>Photos</h2>
+        <div class="row">
+            {{#each photos}}
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+
+
+                        <img src="{{this}}"/>
+
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
     {{#if reportsWithAggressor}}
     <h2>Reports</h2>
     {{/if}}

@@ -68,3 +68,41 @@ Template.editAggressor.events({
        }
    }
 });
+
+function dataURItoBlob(dataURI) {
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: mimeString});
+}
+
+
+
+Template.photoAdd.events({
+    'change #fileToUpload': function (e,t) {
+        var file = document.getElementById('fileToUpload').files[0];
+        document.getElementById('fileToUpload').value = null;
+        toastr.warning('Uploading photo!');
+        processImage(file, 1024, 1024, function(dataURI) {
+            var blob = dataURItoBlob(dataURI);
+            uploader.send(blob, function (error, downloadUrl) {
+                toastr.success('Succeeded uploading');
+
+                var aggressor          = getAggressor();
+
+               if (!aggressor.photos || (aggressor.photos == undefined) || aggressor.photos == null){
+                   aggressor.photos = [];
+               }
+
+                aggressor.push('photos', downloadUrl);
+                setAggressor(aggressor);
+                document.getElementById('fileToUpload').value = null;
+            });
+        });
+
+    }
+});

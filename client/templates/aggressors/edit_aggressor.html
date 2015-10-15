@@ -6,7 +6,7 @@
             {{> firstNameEdit}}
             {{> lastNameEdit}}
             {{> aliasesEdit}}
-
+            {{> photosEdit}}
         </form>
         {{else}}
         {{> accessDenied}}
@@ -25,6 +25,34 @@
     <div class="form-group">
         <label class="control-label" for="title">Last Name</label>
         <input name="lastName" id="lastName" type="text" value="{{lastName}}" placeholder="a Last Name" class="form-control"/>
+    </div>
+</template>
+
+<template name="photosEdit">
+    <h2>Photos</h2>
+    {{> photoAdd}}
+    <!-- <h3>Existing</h3>-->
+    <div class="row">
+        {{#each photos}}
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+
+
+                    <img src="{{this}}"/>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+</template>
+
+<template name="photoAdd">
+    <div class="form-group">
+        <div class="controls">
+            <label class="control-label" for="fileToUpload">Upload Photos</label>
+            <input name="fileToUpload" type="file" class="form-control" id="fileToUpload" accept="image/*">
+        </div>
     </div>
 </template>
 

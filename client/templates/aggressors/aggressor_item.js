@@ -1,4 +1,7 @@
 Template.aggressorItem.helpers({
+    firstPhoto: function (){
+        return this.photos[0];
+    },
     aliasesString: function () {
         return this.aliases.join(', ');
     },
@@ -9,6 +12,7 @@ Template.aggressorItem.helpers({
         return Reports.find({aggressors:this._id});
     }
 });
+
 
 Template.aggressorItem.events({
     'click #edit': function (e){
