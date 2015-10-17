@@ -1,7 +1,7 @@
 
 <template name="reportsList">
     <h1>Reports</h1>
-    {{> esInput index="reports" class="form-control" placeholder="Search..." allDocsOnEmpty=true}}
+    {{> esInput index="reports" id="reportList" class="search form-control" placeholder="Search..." allDocsOnEmpty=true}}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -11,24 +11,34 @@
         </thead>
         <tbody>
 
-        {{#ifEsIsSearching index="reports"}}
+        {{#ifEsIsSearching id="reportList" index="reports"}}
             <div>Loading...</div>
         {{else}}
-                {{#esEach index="reports"}}
+                {{#esEach id="reportList" index="reports"}}
                     {{>reportItemTable}}
                 {{/esEach}}
 
-            {{> esLoadMoreButton index="reports"}}
+            {{> esLoadMoreButton id="reportList" index="reports"}}
         {{/ifEsIsSearching}}
 
-        {{#ifEsHasNoResults index="reports"}}
+        {{#ifEsHasNoResults id="reportList" index="reports"}}
             <div class="no-results">No results found!</div>
         {{/ifEsHasNoResults}}
 
 
         </tbody>
     </table>
+{{> cityFilters}}
+</template>
 
+
+
+
+<template name="cityFilters">
+
+    {{#each cities}}
+        <input id="{{this}}" type="button" class="cityFilter btn btn-secondary" value="{{this}}"/>
+    {{/each}}
 </template>
 
 

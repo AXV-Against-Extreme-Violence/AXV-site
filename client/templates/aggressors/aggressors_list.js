@@ -13,3 +13,4 @@ Template.aggressorItemTable.events({
         Router.go('aggressorItem', {_id: this._id});
     }
 });
+
