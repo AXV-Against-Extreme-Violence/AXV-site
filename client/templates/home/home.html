@@ -4,15 +4,16 @@
         <div style="margin-top:50px;">
 
         {{#each aggressors}}
-
-            {{#each photos}}
+        <a href="{{pathFor 'aggressorItem'}}" style="display:block;">
+            {{#with photos.[0]}}
                 <!-- <div class="col-sm-6 col-md-3">-->
-                <a href="#" style="display:block;">
+
                     <div style="float:left; height:118px; width:118px; background-size: cover; background-image: url('{{this}}');">
                     </div>
-                </a>
+
                 <!--</div>-->
-            {{/each}}
+            {{/with}}
+        </a>
         {{/each}}
         </div>
 

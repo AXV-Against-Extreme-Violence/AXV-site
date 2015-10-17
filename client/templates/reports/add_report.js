@@ -36,6 +36,13 @@ Blaze.registerHelper('isEqual', function (lhs, rhs) {
 });
 
 Template.reportForm.helpers({
+    cities: function(){
+      return cubanCities;
+    },
+    isCurrentCity: function (aCity){
+        var report = Session.get('report');
+        return report.location == aCity;
+    },
    photos: function (){
        var report = Session.get('report');
        return report.evidence.photos;
@@ -55,10 +62,6 @@ Template.reportForm.helpers({
     aggressorWithId: function (aId)
     {
       return Aggressors.findOne(aId);
-    },
-    title: function (){
-        var report = Session.get('report');
-        return report.title;
     },
     explanation: function (){
         var report = Session.get('report');
@@ -265,7 +268,7 @@ Template.reportForm.events({
             report = new Report();
             Session.set('report', report);
         }
-        report.title        = $(t).find('[name=title]').val();
+        report.location        = $(t).find('[name=location]').val();
         report.kind         = $(t).find('[name=kind]').val();
 
         report.explanation  = $(t).find('[name=explanation]').val();
@@ -303,7 +306,7 @@ Template.reportForm.events({
             return;
 
         }
-        report.title        = $(e.target).find('[name=title]').val();
+        report.location        = $(e.target).find('[name=location]').val();
         report.kind         = $(e.target).find('[name=kind]').val();
 
         report.explanation  = $(e.target).find('[name=explanation]').val();

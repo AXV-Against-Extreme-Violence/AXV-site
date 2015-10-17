@@ -12,13 +12,17 @@
         <div class="form-group">
 
 
-
-            <label class="control-label" for="title">Title</label>
-            {{#with field="title"}}
+            <label class="control-label" for="location">Location</label>
+            {{#with field="location"}}
                 {{> displayError}}
             {{/with}}
+
             <div class="controls">
-                <input name="title" id="title" type="text" value="{{title}}" placeholder="Your Title" class="form-control"/>
+                <select name="location" id="location" class="form-control">
+                    {{#each cities}}
+                        <option selected="{{isCurrentCity this}}">{{this}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
 
