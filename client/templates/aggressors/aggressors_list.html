@@ -1,6 +1,8 @@
 
 <template name="aggressorsList">
-    <h1>Aggressors</h1>
+    {{> evilBackground}}
+    <h1 style="text-shadow: -1px -1px 1px rgba(25, 0, 0, 1);
+    z-index: 10;">Aggressors</h1>
     {{> esInput index="aggressors" id="aList" class="search form-control"  placeholder="Search..." allDocsOnEmpty=true}}
     <table class="table table-hover">
         <thead>

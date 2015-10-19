@@ -1,8 +1,4 @@
 Template.home.helpers({
-    aggressors: function()
-    {
-        return Aggressors.find({});
-    },
     countReports: function ()
     {
         return Reports.find({}).count();
@@ -18,5 +14,11 @@ Template.home.helpers({
     isPlural: function (number)
     {
         return number!=0 && number>1;
+    }
+});
+Template.evilBackground.helpers({
+    aggressors: function()
+    {
+        return Aggressors.find({});
     }
 });
