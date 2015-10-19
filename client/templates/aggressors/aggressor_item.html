@@ -11,7 +11,9 @@
         <a id="edit" href="#"> edit</a>
         {{/if}}
     </h1>
-        Aliases: {{aliasesString}}
+        Aliases: {{aliasesString}}<br/>
+        Locations: {{#each locations}} {{this}}  {{/each}}
+
     {{#if firstPhoto}}
         <h2>Photos</h2>
         <div class="row">

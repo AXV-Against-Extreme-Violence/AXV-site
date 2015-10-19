@@ -314,6 +314,19 @@ Template.reportForm.events({
         report.userID       = Meteor.userId();
         if (report.validate(false))
         {
+            aggressors = report.aggressors;
+            if (aggressors != null && aggressors != undefined && report.location)
+            {
+                _.each(aggressors, function(anAggressorID){
+                    var anAggressor = Aggressors.findOne(anAggressorID);
+                    if (anAggressor.locations == undefined || anAggressor.locations == null)
+                    {
+                        anAggressor.locations = [];
+                    }
+                    anAggressor.push('locations', report.location);
+                    anAggressor.save();
+                })
+            }
             report.save();
             console.log('saved');
             Session.set('report', null);

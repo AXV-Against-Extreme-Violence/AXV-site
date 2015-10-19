@@ -1,7 +1,7 @@
 
 <template name="aggressorsList">
     <h1>Aggressors</h1>
-    {{> esInput index="aggressors" class="form-control"  placeholder="Search..." allDocsOnEmpty=true}}
+    {{> esInput index="aggressors" id="aList" class="search form-control"  placeholder="Search..." allDocsOnEmpty=true}}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -11,23 +11,24 @@
         </thead>
         <tbody>
 
-        {{#ifEsIsSearching index="aggressors"}}
+        {{#ifEsIsSearching id="aList" index="aggressors"}}
             <div>Loading...</div>
         {{else}}
-            {{#esEach index="aggressors"}}
+            {{#esEach id="aList" index="aggressors"}}
                 {{>aggressorItemTable}}
             {{/esEach}}
 
-            {{> esLoadMoreButton index="aggressors"}}
+            {{> esLoadMoreButton id="aList" index="aggressors"}}
         {{/ifEsIsSearching}}
 
-        {{#ifEsHasNoResults index="aggressors"}}
+        {{#ifEsHasNoResults id="aList" index="aggressors"}}
             <div class="no-results">No results found!</div>
         {{/ifEsHasNoResults}}
 
 
         </tbody>
     </table>
+    {{> cityFiltersAggressors}}
 </template>
 
 
@@ -36,4 +37,11 @@
         <td>{{#if noNames}}Unknown{{else}}{{name}} {{lastName}}{{/if}}</td>
         <td>{{listOfAliases}}</td>
     </tr>
+</template>
+
+<template name="cityFiltersAggressors">
+
+    {{#each cities}}
+        <input id="{{this}}" type="button" class="cityFilter btn btn-secondary" value="{{this}}"/>
+    {{/each}}
 </template>

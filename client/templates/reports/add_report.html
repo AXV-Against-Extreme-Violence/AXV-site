@@ -237,12 +237,12 @@
     <ul>
 
 
-        {{#ifEsIsSearching index="aggressors"}}
+        {{#ifEsIsSearching index="aggressors" id="addAggressorList"}}
             <div>Loading...</div>
         {{else}}
             <br/>
             <div class="results-wrapper">
-            {{#esEach index="aggressors"}}
+            {{#esEach index="aggressors" id="addAggressorList"}}
                 {{#if (isAdded this._id)}}
                     {{else}}
                     <div class="form-group">
@@ -259,12 +259,12 @@
             {{/esEach}}
 
             </div>
-            {{> esLoadMoreButton index="aggressors"}}
+            {{> esLoadMoreButton index="aggressors" id="addAggressorList"}}
         {{/ifEsIsSearching}}
-        {{#ifEsHasNoResults index="aggressors"}}
+        {{#ifEsHasNoResults index="aggressors" id="addAggressorList"}}
             <div class="no-results">No results found!</div>
         {{/ifEsHasNoResults}}
-        {{#ifEsInputIsEmpty index="aggressors"}}
+        {{#ifEsInputIsEmpty index="aggressors" id="addAggressorList"}}
         {{else}}
             <input id="addWithAlias" type="button" class="btn btn-secondary" value="Create Aggressor with '{{searchTerm}}' alias"/>
         {{/ifEsInputIsEmpty}}

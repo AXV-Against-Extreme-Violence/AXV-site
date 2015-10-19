@@ -14,3 +14,25 @@ Template.aggressorItemTable.events({
     }
 });
 
+Template.cityFiltersAggressors.helpers({
+    cities: function ()
+    {
+        return cubanCities;
+    }
+});
+
+Template.cityFiltersAggressors.events({
+    'click .cityFilter': function (e,t){
+        var newVal = $(e.target).val();
+        $('.search').val(newVal);
+        Session.set('aggressorSearchTerm', newVal);
+        EasySearch
+            .getComponentInstance({ id:'aList', index: 'aggressors' })
+            .search(newVal);
+    }
+});
+
+aggressorSearchHandler = Tracker.autorun(function() {
+    var sessionVal = Session.get("aggressorSearchTerm");
+    $('.search').val(sessionVal);
+});
