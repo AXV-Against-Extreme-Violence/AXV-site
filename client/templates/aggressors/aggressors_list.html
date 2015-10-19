@@ -1,14 +1,18 @@
 
 <template name="aggressorsList">
-    {{> evilBackground}}
+
+
+    <div>
     <h1 style="text-shadow: -1px -1px 1px rgba(25, 0, 0, 1);
     z-index: 10;">Aggressors</h1>
     {{> esInput index="aggressors" id="aList" class="search form-control"  placeholder="Search..." allDocsOnEmpty=true}}
     <table class="table table-hover">
         <thead>
         <tr>
+            <th>Photo</th>
             <th>Full Name</th>
             <th>Alias</th>
+            <th>Locations</th>
         </tr>
         </thead>
         <tbody>
@@ -31,13 +35,25 @@
         </tbody>
     </table>
     {{> cityFiltersAggressors}}
+    </div>
 </template>
 
 
 <template name="aggressorItemTable">
     <tr class="rowItem" style="cursor: pointer;">
-        <td>{{#if noNames}}Unknown{{else}}{{name}} {{lastName}}{{/if}}</td>
+        <td>{{#with photos.[0]}}<a href="{{pathFor 'aggressorItem'}}" style="display:block;">
+                <!-- <div class="col-sm-6 col-md-3">-->
+
+                <div style="border-radius:50%; float:left; height:118px; width:118px; background-size: cover; background-image: url('{{this}}');">
+                </div>
+
+                <!--</div>-->
+        </a> {{/with}}
+            </td>
+        <td>
+            {{#if noNames}}Unknown{{else}}{{name}} {{lastName}}{{/if}} </td>
         <td>{{listOfAliases}}</td>
+        <td>{{#each locations}} {{this}} {{/each}}</td>
     </tr>
 </template>
 
