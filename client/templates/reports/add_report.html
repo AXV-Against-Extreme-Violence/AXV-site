@@ -139,13 +139,25 @@
             {{#each aggressors}}
 
 
-
+            <div class="row">
             {{#with (aggressorWithId this)}}
+                    <div class="col-sm-6 col-md-3">
+                        {{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
+                            {{#if listOfAliases}} ({{listOfAliases}}){{/if}}
+                        {{/if}}
+                    {{#each photos}}
 
-                {{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
-                    {{#if listOfAliases}} ({{listOfAliases}}){{/if}}
-                {{/if}} <br/>
+                            <div style="border-radius: 50%;" class="thumbnail">
+
+
+                                <img src="{{this}}"/>
+
+                            </div>
+
+                    {{/each}}
+                    </div>
             {{/with}}
+            </div>
 
 
             {{/each}}
@@ -232,7 +244,7 @@
 </template>
 
 <template name="searchBox">
-    {{> esInput index="aggressors" placeholder="Search..." class="form-control box"}}
+    {{> esInput index="aggressors" placeholder="Search..." class="form-control box" id="addAggressorList"}}
 
     <ul>
 
