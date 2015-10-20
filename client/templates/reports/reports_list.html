@@ -35,9 +35,9 @@
 
 
 <template name="cityFilters">
-
+<h2>Search by city</h2>
     {{#each cities}}
-        <input id="{{this}}" type="button" class="cityFilter btn btn-secondary" value="{{this}}"/>
+        <input id="{{this}}" type="button" style="background-color: white; color:black; font-weight: bolder;" class="cityFilter btn btn-secondary" value="{{this}}"/>
     {{/each}}
 </template>
 
@@ -45,10 +45,7 @@
 <template name="reportItemTable">
     <tr class="rowItem" style="cursor: pointer;">
         <td>{{formatDate date}}</td>
-        <td>{{location}}</td>
-    </tr>
-    <tr class="rowItem" style="cursor: pointer;">
-        <td></td>
-        <td><b>Explanation: </b>{{explanation}}</td>
+        <td>{{location}}
+            <div><b>Explanation: </b>{{explanation}}</div></td>
     </tr>
 </template>
