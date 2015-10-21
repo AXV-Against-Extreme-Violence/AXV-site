@@ -94,11 +94,20 @@ Template.photoAdd.events({
 
                 var aggressor          = getAggressor();
 
-               if (!aggressor.photos || (aggressor.photos == undefined) || aggressor.photos == null){
-                   aggressor.photos = [];
-               }
+                if (!aggressor.photos || aggressor.photos == undefined || aggressor.photos == null)
+                {
 
-                aggressor.push('photos', downloadUrl);
+                    aggressor.set('photos', [downloadUrl]);
+                } else
+                {
+                    var sum = aggressor.get('photos');
+                    sum.push(downloadUrl);
+
+
+                    aggressor.set('photos', sum);
+                }
+
+                aggressor.save();
                 setAggressor(aggressor);
                 document.getElementById('fileToUpload').value = null;
             });

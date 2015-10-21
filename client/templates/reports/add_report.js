@@ -61,7 +61,7 @@ Template.reportForm.helpers({
     },
     aggressorWithId: function (aId)
     {
-      return Aggressors.findOne(aId);
+      return Aggressors.findOne(aId).get();
     },
     explanation: function (){
         var report = Session.get('report');
@@ -113,6 +113,7 @@ Template.searchBox.events({
     'click #addWithAlias': function (){
         var newA = new Aggressor();
         newA.aliases = [Session.get('term')];
+        newA.name = Session.get('term');
         newA.save();
     },
     'click #addToReport': function ()
@@ -193,9 +194,17 @@ Template.reportForm.events({
                     report.evidence.push('photos', downloadUrl);
                     Session.set('report', report);
                 } else {
-                    var anA = Aggressors.findOne(whoID);
-                    anA.push('photos', downloadUrl);
-                    anA.save();
+                    var anAggressor = Aggressors.findOne(whoID);
+                    if (!anAggressor.photos || anAggressor.photos == undefined || anAggressor.photos == null)
+                    {
+
+                        anAggressor.set('photos', [downloadUrl]);
+                    } else {
+                        var sum = anAggressor.get('photos');
+                        sum.push(downloadUrl);
+                        anAggressor.set('photos', sum);
+                    }
+                    anAggressor.save();
                 }
 
                 document.getElementById('fileToUpload').value = null;

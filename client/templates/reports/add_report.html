@@ -139,25 +139,24 @@
             {{#each aggressors}}
 
 
-            <div class="row">
+
             {{#with (aggressorWithId this)}}
-                    <div class="col-sm-6 col-md-3">
-                        {{#if noNames}}{{listOfAliases}}{{else}}{{firstName}} {{lastName}}
-                            {{#if listOfAliases}} ({{listOfAliases}}){{/if}}
+                    <div class="col-sm-6 col-md-3" style="text-align: center">
+                        {{#if noNames}} {{listOfAliases}}{{else}}<b> {{firstName}} {{lastName}}</b> <br>
+                            <i>{{#if listOfAliases}} ({{listOfAliases}}){{/if}}</i>
                         {{/if}}
-                    {{#each photos}}
-
-                            <div style="border-radius: 50%;" class="thumbnail">
 
 
-                                <img src="{{this}}"/>
 
-                            </div>
 
-                    {{/each}}
+
+
+
+
+
                     </div>
             {{/with}}
-            </div>
+
 
 
             {{/each}}
