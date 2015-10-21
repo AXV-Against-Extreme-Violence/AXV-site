@@ -5,6 +5,10 @@ Template.aggressorItem.helpers({
     aliasesString: function () {
         return this.aliases.join(', ');
     },
+    locationsString: function ()
+    {
+        return this.locations.join(', ');
+    },
     realName: function (){
         return this.name || this.lastName;
     },

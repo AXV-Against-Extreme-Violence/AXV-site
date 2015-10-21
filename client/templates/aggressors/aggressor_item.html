@@ -1,5 +1,13 @@
 <template name="aggressorItem">
-<img style="border-radius:50%" width="150px" height="150px" src="{{firstPhoto}}"/>
+    <div>
+    {{#with photos.[0]}}<a href="{{pathFor 'aggressorItem'}}" style="display:block;">
+        <!-- <div class="col-sm-6 col-md-3">-->
+
+        <div style="border-radius:50%; float:left; height:150px; width:150px;margin-right: 10px; background-size: cover; background-image: url('{{this}}');">
+        </div>
+
+        <!--</div>-->
+    </a> {{/with}}
     <h1>
 
         {{#if realName}}
@@ -13,9 +21,10 @@
         {{/if}}
     </h1>
         Aliases: {{aliasesString}}<br/>
-        Locations: {{#each locations}} {{this}}  {{/each}}
-
+        Locations: {{locationsString}}
+    </div>
     {{#if firstPhoto}}
+        <br/>
         <h2>Photos</h2>
         <div class="row">
             {{#each photos}}
@@ -34,7 +43,7 @@
     <h2>Reports</h2>
     {{/if}}
     {{#each reportsWithAggressor}}
-        <h3><a id="#editButton" href="{{pathFor 'reportItem'}}">{{title}}</a></h3>
+        <h3><a id="#editButton" href="{{pathFor 'reportItem'}}">{{location}}</a></h3>
         {{> reportDetails}}
     {{/each}}
 </template>

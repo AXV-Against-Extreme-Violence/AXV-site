@@ -328,11 +328,15 @@ Template.reportForm.events({
             {
                 _.each(aggressors, function(anAggressorID){
                     var anAggressor = Aggressors.findOne(anAggressorID);
-                    if (anAggressor.locations == undefined || anAggressor.locations == null)
+                    if (!anAggressor.locations || anAggressor.locations == undefined || anAggressor.locations == null)
                     {
-                        anAggressor.locations = [];
+
+                        anAggressor.set('locations', [report.location]);
+                    } else {
+                        var sum = anAggressor.get('locations');
+                        sum.push(report.location);
+                        anAggressor.set('locations', sum);
                     }
-                    anAggressor.push('locations', report.location);
                     anAggressor.save();
                 })
             }
