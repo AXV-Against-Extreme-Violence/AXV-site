@@ -1,5 +1,5 @@
 <template name="aggressorItem">
-<img src="{{firstPhoto}}"/>
+<img style="border-radius:50%" width="150px" height="150px" src="{{firstPhoto}}"/>
     <h1>
 
         {{#if realName}}
@@ -8,7 +8,8 @@
             Unknown Name
         {{/if}}
         {{#if currentUser}}
-        <a id="edit" href="#"> edit</a>
+
+        <small>{{> social_buttons url=(pathFor 'aggressorItem') text=shareString}}<a id="edit" href="#"> edit</a></small>
         {{/if}}
     </h1>
         Aliases: {{aliasesString}}<br/>

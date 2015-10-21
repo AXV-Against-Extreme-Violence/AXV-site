@@ -9,7 +9,7 @@
 </template>
 
 <template name="reportDetails">
-    <p><b>{{kind}}</b></p>
+    <p><b>{{kind}}</b>{{> social_buttons url=(pathFor 'reportItem') text=shareString}}</p>
     <p>{{formattedDate}}</p>
     <p>{{explanation}}</p>
 </template>

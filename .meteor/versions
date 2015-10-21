@@ -52,6 +52,7 @@ jquery@1.11.4
 juliomac:prettyphoto@3.1.6
 launch-screen@1.0.4
 less@2.5.0_3
+liberation:shareit@1.0.2
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
@@ -93,8 +94,10 @@ sanjo:meteor-version@1.0.0
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
+shmck:meteor-social-buttons@0.3.1
 spacebars@1.0.7
 spacebars-compiler@1.0.7
+spiderable@1.0.9
 srp@1.0.4
 standard-app-packages@1.0.6
 standard-minifiers@1.0.1

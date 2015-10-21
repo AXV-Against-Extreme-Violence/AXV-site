@@ -15,6 +15,14 @@ Template.reportItem.events({
 Template.reportDetails.helpers({
     formattedDate: function (){
         return moment(this.eventDate).format("DD/MM/YYYY HH:MM");
+    },
+    shareData: function (){
+        var title = this.kind;
+        var excerpt= this.location+', '+this.explanation+'.';
+        return {title: title, excerpt:excerpt};
+    },
+    shareString: function (){
+        return this.kind+', '+this.location;
     }
 });
 

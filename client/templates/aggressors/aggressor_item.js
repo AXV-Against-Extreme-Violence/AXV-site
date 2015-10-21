@@ -10,6 +10,9 @@ Template.aggressorItem.helpers({
     },
     reportsWithAggressor: function (){
         return Reports.find({aggressors:this._id});
+    },
+    shareString: function (){
+        return this.name+' '+this.lastName;
     }
 });
 
